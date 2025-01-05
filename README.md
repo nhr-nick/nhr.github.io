@@ -1,3 +1,7 @@
-# pianfan.github.io
+# AquaNova Website
 
-My Personal Blog via GitHub
+This is the official website for AquaNova, featuring our innovative aquarium filtration products.
+
+## Project Structure
+
+

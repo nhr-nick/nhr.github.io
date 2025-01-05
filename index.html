@@ -1,105 +1,163 @@
----
-layout: default
----
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="search blog posts..." style="width: 90%;
-    height: 35px;
-    color: #333;
-    background-color: rgba(227,231,236,.2);
-    line-height: 35px;
-    margin-top: 20px;
-    padding:10px 16px;
-    border: 1px solid #c0c0c0;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 17px;
-    outline: none;
-    box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);">
-  <ul id="results-container"></ul>
-</div>
-
-<!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
-<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
-
-<script>
-	window.simpleJekyllSearch = new SimpleJekyllSearch({
-	searchInput: document.getElementById('search-input'),
-	resultsContainer: document.getElementById('results-container'),
-	json: '{{ site.baseurl }}/search.json',
-	searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
-	noResultsText: 'No results found',
-	limit: 10,
-	fuzzy: false,
-	exclude: ['Welcome']
-  })
-</script>
- 
-{% if site.posts.size == 0 %}
-  <h2>No post found</h2>
-{% endif %}
-
-<div class="posts">
-  {% for post in paginator.posts %}
-  {% unless post.draft %}
-    <article class="post">
-      <h1>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </h1>
-
-      <div class="meta">
-        <span class="date">
-          {{ post.date | date: "%Y-%m-%d" }}
-        </span>
-
-        <ul class="tag">
-          {% for tag in post.tags %}
-          <li>
-            <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-              {{ tag }}
-            </a>
-          </li>
-          {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaNova</title>
+    <meta name="author" content="Kyrie">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">AQUANOVA</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#innovation">Our Innovation</a></li>
+            <li><a href="#business">Marketing Strategy</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
+        <button class="menu-toggle">☰</button>
+    </nav>
 
-      <div class="entry">
-        {{ post.excerpt | truncate: 200 }}
-      </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">AQUANOVA</h1>
+            <div class="glowing-line"></div>
+            <div class="logo-image">
+                <img src="images/A.png" alt="AQUANOVA Logo">
+            </div>
+        </div>
+    </section>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endunless %}
-  {% endfor %}
-</div>
+    <main>
+        <section class="product-showcase" id="innovation">
+            <h2 style="font-family: Arial, sans-serif; font-size: 4em; font-weight: 900; color: rgba(173, 216, 230, 0.95); letter-spacing: 10px; text-transform: capitalize; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8), 0 0 20px rgba(135, 206, 235, 0.5), 0 0 30px rgba(100, 149, 237, 0.3), 0 0 40px rgba(0, 191, 255, 0.3), 0 0 70px rgba(30, 144, 255, 0.2); animation: titleGlow 2s ease-in-out infinite;">Our Product</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200" alt="人工珊瑚">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ecological Artificial Coral</h3>
+                        <p>Innovative eco-friendly aquarium filtration system combining aesthetics and functionality</p>
+                        <ul class="features">
+                            <li>Real-time Water Quality Monitoring</li>
+                            <li>Predictive Maintenance</li>
+                            <li>Quantitative Regulation</li>
+                            <li>Adaptive Optimization</li>
+                        </ul>
+                        <div class="button-group">
+                            <a href="coral-details.html" class="learn-more">Learn More</a>
+                            <a href="model-view.html" class="view-3d">View 3D Model</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/jellyfish2.jpg" alt="Bionic Jellyfish">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bionic Jellyfish Filter</h3>
+                        <p>Our purifier offers customizable designs like jellyfish for mobility, with solar panels and AI monitoring providing real-time performance data directly to customers' devices. This affordability, efficiency, and adaptability combination makes our purifier a reliable, sustainable choice, supporting healthier communities worldwide.</p>
+                        <ul class="features">
+                            <li>Bionic Pulsation Design</li>
+                            <li>Smart Water Quality Monitoring</li>
+                            <li>Colorful Ambient Lighting</li>
+                        </ul>
+                        <div class="button-group">
+                            <a href="jellyfish-details.html" class="learn-more">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <span class="prev">
-      <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="prev">
-        ← 上一页
-      </a>
-    </span>
-  {% endif %}
-  {% if paginator.next_page %}
-    <span class="next">
-      <a href="{{ site.baseurl}}{{ paginator.next_page_path }}" class="next">
-        下一页 →
-      </a>
-    </span>
-  {% endif %}
-</div>
+        <section id="business" class="business-plan">
+            <h2>Marketing Strategy</h2>
+            <div class="plan-container">
+                <div class="plan-grid">
+                    <div class="plan-item">
+                        <div class="plan-icon">🏛️</div>
+                        <h3>Government & Environmental Organizations</h3>
+                        <p>Engage with government departments and environmental protection agencies to promote our sustainable water purification solutions. Build partnerships with NGOs to expand our environmental impact.</p>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">📱</div>
+                        <h3>Digital Media Promotion</h3>
+                        <p>Implement comprehensive digital marketing campaigns across social media platforms. Create engaging content showcasing our technology's environmental benefits and real-world applications.</p>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">🌏</div>
+                        <h3>Environmental Exhibition Presence</h3>
+                        <p>Participate in major environmental technology exhibitions and sustainability conferences. Demonstrate our innovative solutions through live demonstrations and interactive displays.</p>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-icon">🤝</div>
+                        <h3>Community Engagement & CSR</h3>
+                        <p>Organize community-based environmental education programs and public welfare activities. Collaborate with schools and local organizations to raise awareness about water conservation and environmental protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<!--不算子网站访客统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<!-- pv的方式，单个用户连续点击n篇文章，记录n次访问量 -->
-<div align="center">
-	<span id="busuanzi_container_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;">
-		View:<span id="busuanzi_value_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
-	</span>
-	<!-- uv的方式，单个用户连续点击n篇文章，只记录1次访客数 -->
-	<span id="busuanzi_container_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;">
-		User:<span id="busuanzi_value_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
-	</span>
-</div>
+    <section class="contact-section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <a href="mailto:Kyriezhang02@outlook.com" class="email-link">
+                <div class="email-icon">
+                    <span class="envelope">
+                        <span class="paper"></span>
+                    </span>
+                </div>
+                <span class="email-text">Kyriezhang02@outlook.com</span>
+            </a>
+        </div>
+    </section>
+
+    
+
+    <script src="scripts/model-viewer.js"></script>
+    <script>
+        // 获取模态框元素
+        const modal = document.getElementById('coralModal');
+        const closeButton = document.querySelector('.close-button');
+        const learnMoreButtons = document.querySelectorAll('.learn-more');
+
+        // 打开模态框
+        learnMoreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            });
+        });
+
+        // 关闭模态框
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢复背景滚动
+        });
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
